@@ -1,0 +1,12 @@
+{
+  "name": "ai-call-agent",
+  "version": "1.0.0",
+  "description": "AI Voice Call Agent using Cloudflare",
+  "main": "worker.js",
+  "scripts": {
+    "start": "node worker.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

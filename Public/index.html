@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Neon Voice Agent</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="bg">
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+      <div class="glow g3"></div>
+
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">NVA</div>
+          <div class="brandText">
+            <div class="title">Neon Voice Agent</div>
+            <div class="subtitle">Voice call UI + streaming AI + file chat</div>
+          </div>
+        </div>
+
+        <div class="statusPill">
+          <span id="dot"></span>
+          <span id="status">IDLE</span>
+          <span class="sep">•</span>
+          <span id="timer">00:00</span>
+        </div>
+      </header>
+
+      <main class="layout">
+        <!-- LEFT PANEL -->
+        <section class="panel card">
+          <div class="panelHeader">
+            <div class="panelTitle">Call & Voice</div>
+            <div class="panelHint">Local + Deploy ready</div>
+          </div>
+
+          <div class="orbWrap">
+            <canvas id="wave" width="520" height="220"></canvas>
+            <div class="orb">
+              <div class="orbRing"></div>
+              <div class="orbCore">
+                <div class="orbBig">CALL</div>
+                <div class="orbSmall" id="modeLabel">Browser Voice</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="btnRow">
+            <button id="startCall" class="btn primary">Start</button>
+            <button id="talk" class="btn">Mic</button>
+            <button id="endCall" class="btn danger">End</button>
+          </div>
+
+          <div class="settings">
+            <div class="setRow">
+              <label class="toggle">
+                <input id="streamToggle" type="checkbox" checked />
+                <span class="tog"></span>
+                <span>Streaming reply</span>
+              </label>
+            </div>
+
+            <div class="setRow">
+              <label class="toggle">
+                <input id="myVoiceToggle" type="checkbox" />
+                <span class="tog"></span>
+                <span>Use My Voice (XTTS local)</span>
+              </label>
+            </div>
+
+            <div class="setRow">
+              <div class="fieldLabel">XTTS server URL (local/LAN)</div>
+              <input id="ttsUrl" class="field" value="http://127.0.0.1:8020" />
+              <div class="fieldHelp">
+                Tip: run xtts-api-server locally; deployed site can’t call your localhost unless you expose it safely.
+              </div>
+            </div>
+
+            <div class="setRow">
+              <div class="fieldLabel">Model</div>
+              <select id="model" class="field">
+                <option value="@cf/meta/llama-3.1-8b-instruct">Llama 3.1 8B (fast)</option>
+              </select>
+              <div class="fieldHelp">
+                Streaming supported via SSE. 【3-41f5bc】
+              </div>
+            </div>
+          </div>
+
+          <div class="miniNote">
+            ⚠️ Don’t upload confidential work docs or screenshots; use sample/test files only.
+          </div>
+        </section>
+
+        <!-- RIGHT PANEL -->
+        <section class="chat card" id="dropZone">
+          <div class="chatHeader">
+            <div>
+              <div class="chatTitle">Chat</div>
+              <div class="chatSub">Drag & drop images/docs or click 📎</div>
+            </div>
+            <button class="iconBtn" id="clearChat" title="Clear chat">🧹</button>
+          </div>
+
+          <div id="log" class="log"></div>
+
+          <div id="attachments" class="attachments"></div>
+
+          <div class="composer">
+            <input id="typed" class="input" placeholder="Type a message…" />
+            <input id="file" type="file" class="hidden" multiple />
+            <button id="attach" class="iconBtn" title="Attach">📎</button>
+            <button id="send" class="btn primary small">Send</button>
+          </div>
+
+          <div id="err" class="err"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Optional PDF text extraction -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.js"
+      integrity="sha512-uS2C6gJxOQyA5LwzQWlY8Fh6tq0ZqP5mF+Yl4Dq6r0b7qEw2m8tO1l0oXg8Z5h2x0r0o8VwS9yqf0b5h0w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

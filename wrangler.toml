@@ -1,0 +1,8 @@
+name = "neon-voice-agent"
+main = "worker.js"
+compatibility_date = "2026-05-15"
+
+assets = { directory = "./public", binding = "ASSETS", run_worker_first = true }
+
+[ai]
+binding = "AI"
